@@ -63,13 +63,19 @@ app.post("/api/shorturl", async (req, res) => {
 
 app.get("/api/shorturl/:id", async (req, res) => {
   const id = req.params.id;
-  const url =  await UrlShorter.findOne({shortUrl: id});
+  if(id == Number(id)){
+    const url =  await UrlShorter.findOne({shortUrl: id});
   if(url) {
     res.redirect(url.originalUrl);
   }
   else {
     res.redirect("/");
   }
+  }
+  else {
+    res.json({error: "wrong params"});
+  }
+  
 });
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);
