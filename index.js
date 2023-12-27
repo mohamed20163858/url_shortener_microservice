@@ -40,7 +40,7 @@ app.post("/api/shorturl", async (req, res) => {
     const check = await UrlShorter.exists({ originalUrl:  originalUrl}, { new: true});
     let obj;
     let Url;
-    console.log("check: ", check);
+    // console.log("check: ", check);
     if(check) {
       Url = await UrlShorter.findById(check);
       obj = {original_url: originalUrl, shorter_url: Url.shortUrl }
