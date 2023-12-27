@@ -5,12 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose"); 
 const app = express();
 function isValidURL(url) {
-  try {
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  const urlPattern = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/\S*)?$/i;
+  return urlPattern.test(url);
 }
 // Basic Configuration
 const port = process.env.PORT || 3000;
